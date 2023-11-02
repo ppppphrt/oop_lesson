@@ -24,3 +24,30 @@ for city in cities:
 for city in cities_ext:
     if city['EU'] == 'no' and float(city['temperature']) < 5.0:
         print(city)
+
+
+# 1. Print the min and max temperatures for cities in the EU that do not have coastlines.
+eu_no_coastline_temps = []
+for city in cities_ext:
+    if city['EU'] == 'yes' and city['coastline'] == 'no':
+        eu_no_coastline_temps.append(float(city['temperature']))
+min_temp_eu_no_coastline = min(eu_no_coastline_temps) if eu_no_coastline_temps else None
+max_temp_eu_no_coastline = max(eu_no_coastline_temps) if eu_no_coastline_temps else None
+
+# 2. Print the min and max latitude for cities in every country.
+latitude_extremes = {}
+for country in countries:
+    country_name = country['country']
+    latitudes = [float(city['latitude']) for city in cities if city['country'] == country_name]
+    if latitudes:
+        latitude_extremes[country_name] = {
+            'min_latitude': min(latitudes),
+            'max_latitude': max(latitudes)
+        }
+
+
+for i in eu_no_coastline_temps:
+    print(i)
+
+for j in latitude_extremes:
+    print(j)
