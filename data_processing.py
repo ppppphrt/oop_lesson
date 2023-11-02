@@ -413,9 +413,8 @@ class Report:
         return extremes
 
 
-# Sample Usage
 db = Database()
-# Assuming cities and countries are lists of dictionaries
+
 for city_data in cities:
     db.add_city(city_data)
 for country_data in countries:
@@ -423,5 +422,14 @@ for country_data in countries:
 
 report = Report(db)
 
-# print(report.average_temperature('Italy'))
+print(report.average_temperature('Italy'))
 
+# Print the min and max temperatures for cities in EU that do not have coastlines
+min_temp, max_temp = report.min_max_temperature(in_eu='yes', has_coastline='no')
+print(
+    f"Min and Max temperatures for cities in EU that do not have coastlines are: {min_temp} and {max_temp} respectively.")
+
+# Print the min and max latitude for cities in every country
+latitude_data = report.latitude_extremes()
+for country, data in latitude_data.items():
+    print(f"In {country}, the min latitude is {data['min_latitude']} and max latitude is {data['max_latitude']}.")
