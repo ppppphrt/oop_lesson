@@ -1,6 +1,7 @@
 # What classes should we have
 # For each class,
 # What are: 1) the data 2) the methods (functions)
+#  written in OOP-style
 class AccountDB:
     def __init__(self):
         self.account_database = []
